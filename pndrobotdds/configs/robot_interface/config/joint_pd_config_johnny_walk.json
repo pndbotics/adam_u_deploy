@@ -1,0 +1,116 @@
+{
+    "waistRoll": {
+        "control_config": {
+            "Kp": 60.0,
+            "Kd": 1.0
+        }
+    },
+    "waistPitch": {
+        "control_config": {
+            "Kp": 60.0,
+            "Kd": 1.0
+        }
+    },
+    "waistYaw": {
+        "control_config": {
+            "Kp": 60.0,
+            "Kd": 1.0
+        }
+    },
+    "neckYaw": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "neckPitch": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderPitch_Left": {
+        "control_config": {
+            "Kp": 18.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderRoll_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderYaw_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "elbow_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristYaw_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristPitch_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristRoll_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderPitch_Right": {
+        "control_config": {
+            "Kp": 18.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderRoll_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderYaw_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "elbow_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristYaw_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristPitch_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "wristRoll_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    }
+}

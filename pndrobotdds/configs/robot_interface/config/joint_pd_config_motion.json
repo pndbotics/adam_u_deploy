@@ -1,0 +1,140 @@
+{
+    "hipPitch_Left": {
+        "control_config": {
+            "Kp": 305.0,
+            "Kd": 6.1
+        }
+    },
+    "hipRoll_Left": {
+        "control_config": {
+            "Kp": 700.0,
+            "Kd": 30.0
+        }
+    },
+    "hipYaw_Left": {
+        "control_config": {
+            "Kp": 405.0,
+            "Kd": 6.1
+        }
+    },
+    "kneePitch_Left": {
+        "control_config": {
+            "Kp": 305.0,
+            "Kd": 6.1
+        }
+    },
+    "anklePitch_Left": {
+        "control_config": {
+            "Kp": 20.0,
+            "Kd": 1.25
+        }
+    },
+    "ankleRoll_Left": {
+        "control_config": {
+            "Kp": 0.0,
+            "Kd": 0.175
+        }
+    },
+    "hipPitch_Right": {
+        "control_config": {
+            "Kp": 305.0,
+            "Kd": 6.1
+        }
+    },
+    "hipRoll_Right": {
+        "control_config": {
+            "Kp": 700.0,
+            "Kd": 30.0
+        }
+    },
+    "hipYaw_Right": {
+        "control_config": {
+            "Kp": 405.0,
+            "Kd": 6.1
+        }
+    },
+    "kneePitch_Right": {
+        "control_config": {
+            "Kp": 305.0,
+            "Kd": 6.1
+        }
+    },
+    "anklePitch_Right": {
+        "control_config": {
+            "Kp": 20.0,
+            "Kd": 1.25
+        }
+    },
+    "ankleRoll_Right": {
+        "control_config": {
+            "Kp": 0.0,
+            "Kd": 0.175
+        }
+    },
+    "waistRoll": {
+        "control_config": {
+            "Kp": 405.0,
+            "Kd": 6.1
+        }
+    },
+    "waistPitch": {
+        "control_config": {
+            "Kp": 405.0,
+            "Kd": 6.1
+        }
+    },
+    "waistYaw": {
+        "control_config": {
+            "Kp": 205.0,
+            "Kd": 4.1
+        }
+    },
+    "shoulderPitch_Left": {
+        "control_config": {
+            "Kp": 18.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderRoll_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderYaw_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "elbow_Left": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderPitch_Right": {
+        "control_config": {
+            "Kp": 18.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderRoll_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "shoulderYaw_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    },
+    "elbow_Right": {
+        "control_config": {
+            "Kp": 9.0,
+            "Kd": 0.9
+        }
+    }
+}

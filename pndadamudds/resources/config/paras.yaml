@@ -1,0 +1,14 @@
+---
+# 控制参数示例
+# 0 - 有手（默认）；1 - 无手
+control:
+  adam_type: 0
+  inner_domain_id: 0
+  user_dds_domain_id: 1
+  user_ros_domain_id: 2
+  HandCmd_: "rt/handcmd"
+  HandState_: "rt/handstate"
+  LowCmd_: "rt/lowcmd"
+  LowState_: "rt/lowstate"
+  LowCmd_user_: "rt/lowcmd"
+  network_interface: "eth0"
