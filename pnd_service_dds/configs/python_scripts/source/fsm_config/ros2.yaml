@@ -1,0 +1,19 @@
+---
+# model_pb: "python_scripts/source/adamlite_240827_pndnew_stand_10000_adamlite_walk_PRL_run_0123_model_10800_PRL.pt"
+#
+#
+model_pb_a: configs/python_scripts/source/all_in_one/policy117_20.pt
+model_estimator_a: configs/python_scripts/source/all_in_one/estimator117_20.pt
+model_pb: configs/python_scripts/source/dev/policy_Mar31_1005_walk.pt
+model_estimator: configs/python_scripts/source/dev/estimator_Mar31_1005_walk.pt
+obs_num: 81
+delta_num: 12
+state_name: StateRosDemo
+frame_stack: 5
+latent_frame_stack: 5
+latent_size: 19
+joint_config_path: configs/robot_interface/config/joint_pd_config_johnny_walk.json
+cycle_time_stand: 1.0
+cycle_time_walk: 1.0
+cycle_time_run: 0.7
+other_num: 6

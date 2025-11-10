@@ -1,0 +1,4 @@
+---
+# 配置文件路径
+config_files:
+  configPath: configs/python_scripts/source/fsm_config/ros2.yaml

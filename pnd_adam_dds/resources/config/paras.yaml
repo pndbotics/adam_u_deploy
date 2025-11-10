@@ -1,0 +1,11 @@
+control:
+  adam_type: 0
+  inner_domain_id: 0
+  user_domain_id: 1 # 1:dds 2:ros2
+  HandCmd_: "rt/handcmd"
+  HandState_: "rt/handstate"
+  LowCmd_: "rt/lowcmd"
+  LowState_: "rt/lowstate"
+  LowCmd_user_: "rt/lowcmd"
+  HandCmd_user_: "rt/handcmd"
+  network_interface: "eth0"
