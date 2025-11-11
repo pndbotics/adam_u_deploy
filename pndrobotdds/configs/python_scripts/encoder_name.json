@@ -11,11 +11,11 @@
         "ip": "10.10.10.102",
         "set_zero": 0
     },
-    "necktYaw": {
+    "neckYaw": {
         "ip": "10.10.10.103",
         "set_zero": 0
     },
-    "nicktPitch": {
+    "neckPitch": {
         "ip": "10.10.10.104",
         "set_zero": 0
     },

@@ -6,8 +6,7 @@ result=$(python3 check_abs.py)
 if [ "$result" = "True" ]
 then
     cd ../../
-    sudo ./pndrobotdds -i eth0
-    #sudo ./pndrobotdds 
+    sudo ./pndrobotdds -i wlo1
 else	
     echo "abs not complete, retry"	
 fi
