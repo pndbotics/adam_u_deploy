@@ -7,5 +7,7 @@ control:
   LowCmd_: "rt/lowcmd"
   LowState_: "rt/lowstate"
   LowCmd_user_: "rt/lowcmd"
+  LowState_user_: "rt/lowstate"
   HandCmd_user_: "rt/handcmd"
+  HandState_user_: "rt/handstate"
   network_interface: "eth0"
