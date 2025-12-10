@@ -2,8 +2,8 @@
 
 ## 🏷️ Version Information
 
-**Version**: `v1.0.3`  
-**Release Date**: 2025-11-20  
+**Version**: `v1.0.4`  
+**Release Date**: 2025-12-10  
 **Compatible System**: Ubuntu 22.04 x86_64  
 **Supported Platform**: PND Adam-U Humanoid Robot
 
@@ -134,6 +134,7 @@ pnd_adam_u_sdk/
 
 | Version | Date       | Updates                                                                              |
 | ------- | ---------- | ------------------------------------------------------------------------------------ |
+| v1.0.4  | 2025-12-10 | Fix hand-related errors |
 | v1.0.3  | 2025-11-20 | Fix start hand position bug |
 | v1.0.2  | 2025-11-20 | Update user receive data |
 | v1.0.1  | 2025-11-19 | Fix stop2zero bug |
