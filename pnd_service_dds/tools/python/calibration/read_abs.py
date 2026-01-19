@@ -1,7 +1,7 @@
-import socket
+import asyncio
 import json
 import math
-import asyncio
+import socket
 from enum import Enum
 
 
@@ -16,6 +16,18 @@ ABS_IPS = [
     "10.10.10.102",
     "10.10.10.103",
     "10.10.10.104",
+    "10.10.10.60",
+    "10.10.10.61",
+    "10.10.10.62",
+    "10.10.10.63",
+    "10.10.10.64",
+    "10.10.10.65",
+    "10.10.10.80",
+    "10.10.10.81",
+    "10.10.10.82",
+    "10.10.10.83",
+    "10.10.10.84",
+    "10.10.10.85",
     "10.10.10.20",
     "10.10.10.21",
     "10.10.10.22",
@@ -33,7 +45,7 @@ ABS_IPS = [
 ]
 
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-udp_socket.settimeout(0.03)
+udp_socket.settimeout(0.2)
 remote_port_number = 2334
 
 abs_angle_dict = {}
@@ -71,6 +83,18 @@ def read_motor_rotor_abs_pos():
         "10.10.10.92",
         "10.10.10.93",
         "10.10.10.94",
+        "10.10.10.50",
+        "10.10.10.51",
+        "10.10.10.52",
+        "10.10.10.53",
+        "10.10.10.54",
+        "10.10.10.55",
+        "10.10.10.70",
+        "10.10.10.71",
+        "10.10.10.72",
+        "10.10.10.73",
+        "10.10.10.74",
+        "10.10.10.75",
         "10.10.10.10",
         "10.10.10.11",
         "10.10.10.12",
@@ -174,6 +198,7 @@ async def get_new_abs_angle_handle(host, on_response, on_error):
     )
     return transport
 
+
 async def get_old_abs_angle_handle(host, on_response, on_error):
     loop = asyncio.get_running_loop()
     transport, protocol = await loop.create_datagram_endpoint(
@@ -219,12 +244,12 @@ async def get_all_abs_angle():
 
 
 def main():
-    abs_file = open("source/abs.json", mode="w+", encoding="utf-8")
+    abs_file = open("../model_convert/source/abs.json", mode="w+", encoding="utf-8")
     for _ in range(3):
         asyncio.run(get_abs_info())
     for abs_ip, abs_type in abs_version_dict.items():
         print(abs_ip, abs_type)
-    
+
     asyncio.run(get_all_abs_angle())
     print(f"abs angle dict: {abs_angle_dict}")
     print("read abs complete!")

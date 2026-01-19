@@ -11,7 +11,7 @@ class SetPartZero():
 
     def read_targat_name(self):
         try:
-            with open('encoder_name.json','r') as f:
+            with open('../configs/encoder_name.json','r') as f:
                 all_name = json.load(f)
         except FileNotFoundError:
             print("The encoder name file was not found.")
@@ -36,7 +36,7 @@ class SetPartZero():
 
     def read_targat_value(self):
         try:
-            with open('source/abs.json','r') as f:
+            with open('../model_convert/source/abs.json','r') as f:
                 all_abs = json.load(f)
         except FileNotFoundError:
             print("The abs pos file was not found.")

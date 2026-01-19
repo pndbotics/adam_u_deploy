@@ -52,7 +52,7 @@ def verify_legality():
     # Read abs.json
     # Check if abs is empty
     try:
-        with open("source/abs.json", "r", encoding="utf-8") as abs_angle_file:
+        with open("../model_convert/source/abs.json", "r", encoding="utf-8") as abs_angle_file:
             abs_angle_dict = json.load(abs_angle_file)
         # Check if the number of abs is correct
         for ip in abs_ip_list:
@@ -80,7 +80,7 @@ def set_motor_zero_pos():
         is_ready = False
         # return is_ready
     # Load abs
-    with open("source/abs.json", "r", encoding="utf-8") as abs_angle_file:
+    with open("../model_convert/source/abs.json", "r", encoding="utf-8") as abs_angle_file:
         abs_angle_dict = json.load(abs_angle_file)
     # Load joint
     try:
@@ -132,7 +132,7 @@ def main():
         return
     if args.version == "evt" or args.version == "dvt" or args.version == "pvt":
         print(f"{args.version} version")
-        joint_config_path = f"joint_abs_config_{args.version}_template.json"
+        joint_config_path = f"../configs/joint_abs_config_{args.version}_template.json"
     else:
         print("wrong version")
         return
