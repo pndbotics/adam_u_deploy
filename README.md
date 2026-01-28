@@ -2,8 +2,8 @@
 
 ## 🏷️ Version Information
 
-**Version**: `v1.2.0`  
-**Release Date**: 2026-01-19  
+**Version**: `v1.2.1`  
+**Release Date**: 2026-01-28  
 **Compatible System**: Ubuntu 22.04 x86_64  
 **Supported Platform**: PND Adam-U Humanoid Robot
 
@@ -134,12 +134,13 @@ pnd_adam_u_sdk/
 
 | Version | Date       | Updates                                                                              |
 | ------- | ---------- | ------------------------------------------------------------------------------------ |
-| v1.2.0  | 2026-01-19 | Align with Adam |
-| v1.0.5  | 2025-12-30 | Update hand type |
-| v1.0.4  | 2025-12-10 | Fix hand-related errors |
-| v1.0.3  | 2025-11-20 | Fix start hand position bug |
-| v1.0.2  | 2025-11-20 | Update user receive data |
-| v1.0.1  | 2025-11-19 | Fix stop2zero bug |
+| v1.2.1  | 2026-01-28 | Update default adam type                                                             |
+| v1.2.0  | 2026-01-19 | Align with Adam                                                                      |
+| v1.0.5  | 2025-12-30 | Update hand type                                                                     |
+| v1.0.4  | 2025-12-10 | Fix hand-related errors                                                              |
+| v1.0.3  | 2025-11-20 | Fix start hand position bug                                                          |
+| v1.0.2  | 2025-11-20 | Update user receive data                                                             |
+| v1.0.1  | 2025-11-19 | Fix stop2zero bug                                                                    |
 | v1.0.0  | 2025-11-11 | First official release, supports integrated Adam-U deployment and simulation control |
 | v0.9.0  | 2025-10-15 | Beta version, added DDS message structure and Python SDK bindings                    |
 

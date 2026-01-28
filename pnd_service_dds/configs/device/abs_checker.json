@@ -1,0 +1,98 @@
+{
+  "robot_configs": {
+    "adam_pro": {
+      "check_zero_joints": [
+        "hipPitch_Left",
+        "hipRoll_Left",
+        "hipYaw_Left",
+        "kneePitch_Left",
+        "hipPitch_Right",
+        "hipRoll_Right",
+        "hipYaw_Right",
+        "kneePitch_Right",
+        "waistRoll",
+        "waistPitch",
+        "waistYaw",
+        "neckYaw",
+        "neckPitch",
+        "shoulderPitch_Left",
+        "shoulderRoll_Left",
+        "shoulderYaw_Left",
+        "elbow_Left",
+        "wristYaw_Left",
+        "shoulderPitch_Right",
+        "shoulderRoll_Right",
+        "shoulderYaw_Right",
+        "elbow_Right",
+        "wristYaw_Right"
+      ]
+    },
+    "adam_sp": {
+      "check_zero_joints": [
+        "hipPitch_Left",
+        "hipRoll_Left",
+        "hipYaw_Left",
+        "kneePitch_Left",
+        "hipPitch_Right",
+        "hipRoll_Right",
+        "hipYaw_Right",
+        "kneePitch_Right",
+        "waistRoll",
+        "waistPitch",
+        "waistYaw",
+        "shoulderPitch_Left",
+        "shoulderRoll_Left",
+        "shoulderYaw_Left",
+        "elbow_Left",
+        "wristYaw_Left",
+        "shoulderPitch_Right",
+        "shoulderRoll_Right",
+        "shoulderYaw_Right",
+        "elbow_Right",
+        "wristYaw_Right"
+      ]
+    },
+    "adam_lite": {
+      "check_zero_joints": [
+        "hipPitch_Left",
+        "hipRoll_Left",
+        "hipYaw_Left",
+        "kneePitch_Left",
+        "hipPitch_Right",
+        "hipRoll_Right",
+        "hipYaw_Right",
+        "kneePitch_Right",
+        "waistRoll",
+        "waistPitch",
+        "waistYaw",
+        "shoulderPitch_Left",
+        "shoulderRoll_Left",
+        "shoulderYaw_Left",
+        "elbow_Left",
+        "shoulderPitch_Right",
+        "shoulderRoll_Right",
+        "shoulderYaw_Right",
+        "elbow_Right"
+      ]
+    },
+    "adam_u": {
+      "check_zero_joints": [
+        "waistRoll",
+        "waistPitch",
+        "waistYaw",
+        "neckYaw",
+        "neckPitch",
+        "shoulderPitch_Left",
+        "shoulderRoll_Left",
+        "shoulderYaw_Left",
+        "elbow_Left",
+        "wristYaw_Left",
+        "shoulderPitch_Right",
+        "shoulderRoll_Right",
+        "shoulderYaw_Right",
+        "elbow_Right",
+        "wristYaw_Right"
+      ]
+    }
+  }
+}
