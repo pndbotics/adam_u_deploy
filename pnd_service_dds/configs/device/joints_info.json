@@ -341,7 +341,7 @@
         {
           "ip": "10.10.10.14",
           "name": "wristYaw_Left",
-          "joint_dir": -1,
+          "joint_dir": 1,
           "joint_gear_ratio": 51,
           "c_t_scale": 0.063,
           "zero_pos": 0.0,
@@ -357,7 +357,7 @@
         {
           "ip": "10.10.10.15",
           "name": "wristPitch_Left",
-          "joint_dir": 1,
+          "joint_dir": -1,
           "joint_gear_ratio": 51,
           "c_t_scale": 0.063,
           "zero_pos": 0.0,
