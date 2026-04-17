@@ -1,4 +1,8 @@
 #!/bin/bash
+# 让动态链接器在启动时优先搜索本目录下的 lib（例如 librbdl.so）
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+export LD_LIBRARY_PATH="${BASE_DIR}/lib:${LD_LIBRARY_PATH}"
+
 # 使用 mktemp 在 /tmp 目录创建一个唯一的锁文件
 LOCKFILE=$(mktemp -p /tmp pnd_service_lock.XXXXXX) || exit 1
 
@@ -35,12 +39,12 @@ fi
 echo "[INFO] 找到网络接口: $NETWORK_INTERFACE (IP: $TARGET_IP)"
 
 # 进入标定脚本目录（新架构路径）
-cd "$(dirname "$0")"/tools/python/calibration || exit
+cd "${BASE_DIR}/tools/python/calibration" || exit
 python3 read_abs.py
 result=$(python3 check_abs.py | tail -n 1)
 
 if [ "$result" = "True" ]; then
-    cd ../../../
+    cd "${BASE_DIR}"
     # 使用检测到的网络接口运行（需SUID或sudo免密）
     ./pnd_service_dds -i "$NETWORK_INTERFACE"
 else
