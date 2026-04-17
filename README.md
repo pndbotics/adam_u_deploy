@@ -2,8 +2,8 @@
 
 ## 🏷️ Version Information
 
-**Version**: `v1.2.1`  
-**Release Date**: 2026-01-28  
+**Version**: `v1.2.5`  
+**Release Date**: 2026-04-21  
 **Compatible System**: Ubuntu 22.04 x86_64  
 **Supported Platform**: PND Adam-U Humanoid Robot
 
@@ -134,6 +134,7 @@ pnd_adam_u_sdk/
 
 | Version | Date       | Updates                                                                              |
 | ------- | ---------- | ------------------------------------------------------------------------------------ |
+| v1.2.5  | 2026-04-21 | Update robot profile, joints configuration, and PND service runtime                  |
 | v1.2.1  | 2026-01-28 | Update default adam type                                                             |
 | v1.2.0  | 2026-01-19 | Align with Adam                                                                      |
 | v1.0.5  | 2025-12-30 | Update hand type                                                                     |
