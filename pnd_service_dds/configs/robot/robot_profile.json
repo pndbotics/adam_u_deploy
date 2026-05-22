@@ -1,4 +1,5 @@
 {
-  "adam_type": "adam_u"
+  "adam_type": "adam_u",
+  "disabled_joints": [],
+  "disabled_groups": []
 }
-

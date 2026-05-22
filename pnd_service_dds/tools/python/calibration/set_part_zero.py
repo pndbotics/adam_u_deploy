@@ -1,6 +1,8 @@
 import json
 import os
 
+from config_utils import is_joint_active, lookup_abs_json_key
+
 
 class SetPartZero():
     def __init__(self) -> None:
@@ -45,10 +47,17 @@ class SetPartZero():
             print("Error decoding abs pos JSON file.")
             exit(1)
 
-        for k,v in self.set_zero_name.items():
-            self.targat_value[k] = all_abs[v]['radian']
-            if 'motor_rotor_abs_pos' in all_abs[v]:
-                self.targat_value_motor[k] = all_abs[v]['motor_rotor_abs_pos']
+        for k, v in self.set_zero_name.items():
+            if not is_joint_active(k, base_path="../../../"):
+                print(f"[WARN] 关节 {k} 已在 robot_profile 中禁用，跳过读 ABS")
+                continue
+            abs_k = lookup_abs_json_key(all_abs, v)
+            if abs_k is None:
+                print(f"[ERROR] abs.json 中无 IP {v} 或 +10 对应项")
+                exit(1)
+            self.targat_value[k] = all_abs[abs_k]["radian"]
+            if "motor_rotor_abs_pos" in all_abs[abs_k]:
+                self.targat_value_motor[k] = all_abs[abs_k]["motor_rotor_abs_pos"]
 
     def set_encoder_zero(self):
         joint_config_path_out = "/root/.adam/"

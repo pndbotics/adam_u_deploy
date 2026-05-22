@@ -2,8 +2,8 @@
 
 ## 🏷️ Version Information
 
-**Version**: `v1.2.5`  
-**Release Date**: 2026-04-21  
+**Version**: `v1.2.8`  
+**Release Date**: 2026-05-22
 **Compatible System**: Ubuntu 22.04 x86_64  
 **Supported Platform**: PND Adam-U Humanoid Robot
 

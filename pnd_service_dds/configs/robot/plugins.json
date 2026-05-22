@@ -1,0 +1,5 @@
+{
+  "plugin_abi_expected": 1,
+  "search_paths": ["lib/plugins"],
+  "modules": []
+}

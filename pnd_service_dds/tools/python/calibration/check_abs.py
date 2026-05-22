@@ -1,124 +1,54 @@
 import json
 
-abs_ip_addresses = [
-    "10.10.10.100",
-    "10.10.10.101",
-    "10.10.10.102",
-    "10.10.10.103",
-    "10.10.10.104",
-    "10.10.10.60",
-    "10.10.10.61",
-    "10.10.10.62",
-    "10.10.10.63",
-    "10.10.10.64",
-    "10.10.10.65",
-    "10.10.10.80",
-    "10.10.10.81",
-    "10.10.10.82",
-    "10.10.10.83",
-    "10.10.10.84",
-    "10.10.10.85",
-    "10.10.10.20",
-    "10.10.10.21",
-    "10.10.10.22",
-    "10.10.10.23",
-    "10.10.10.24",
-    "10.10.10.25",
-    "10.10.10.26",
-    "10.10.10.40",
-    "10.10.10.41",
-    "10.10.10.42",
-    "10.10.10.43",
-    "10.10.10.44",
-    "10.10.10.45",
-    "10.10.10.46",
-]
+from config_utils import get_active_joints, load_json_file, lookup_abs_json_key
 
-joint_names = [
-    "waistRoll",
-    "waistPitch",
-    "waistYaw",
-    "neckYaw",
-    "neckPitch",
-    "hipPitch_Right",
-    "hipRoll_Right",
-    "hipYaw_Right",
-    "kneePitch_Right",
-    "anklePitch_Right",
-    "ankleRoll_Right",
-    "hipPitch_Left",
-    "hipRoll_Left",
-    "hipYaw_Left",
-    "kneePitch_Left",
-    "anklePitch_Left",
-    "ankleRoll_Left",
-    "shoulderPitch_Left",
-    "shoulderRoll_Left",
-    "shoulderYaw_Left",
-    "elbow_Left",
-    "wristYaw_Left",
-    "wristPitch_Left",
-    "wristRoll_Left",
-    "shoulderPitch_Right",
-    "shoulderRoll_Right",
-    "shoulderYaw_Right",
-    "elbow_Right",
-    "wristYaw_Right",
-    "wristPitch_Right",
-    "wristRoll_Right",
-]
 read_abs_num = 0
 
 
 def validate_abs():
     global read_abs_num
-    # Read abs.json
-    # Check if abs is empty
+    abs_ips, _, _ = get_active_joints()
     with open("../model_convert/source/abs.json", "r", encoding="utf-8") as abs_angle_file:
         abs_angle_data = json.load(abs_angle_file)
-    # Check if the number of abs is correct
-    for ip in abs_ip_addresses:
-        ip_exists = (
-            ip in abs_angle_data
-            and "motor_rotor_abs_pos" in abs_angle_data[ip]
-            and "radian" in abs_angle_data[ip]
-        )
-        if ip_exists:
+    for ip in abs_ips:
+        k = lookup_abs_json_key(abs_angle_data, ip)
+        if k is None:
+            print(
+                f"[WARN] abs.json 无关节 {ip} 对应项（需 joint_ip+10 的 key 或旧版 joint_ip key），"
+                "read_abs 未写入或路径错误"
+            )
+            continue
+        entry = abs_angle_data[k]
+        if (
+            "motor_rotor_abs_pos" in entry
+            and "radian" in entry
+        ):
             read_abs_num += 1
 
 
 def main():
+    global read_abs_num
+    read_abs_num = 0
     validate_abs()
 
-    # 定义 adam_type 到 abs_num 的映射关系
-    adam_type_to_abs_num = {
-        "adam_pro": 31,
-        "adam_sp": 29,
-        "adam_lite": 23,
-        "adam_u": 19,
-    }
+    config_data = load_json_file(
+        "../../../configs/robot/robot_profile.json", "robot_profile.json"
+    )
 
-    # 打开并读取 JSON 文件
-    with open("../../../configs/robot/robot_profile.json", mode="r", encoding="utf-8") as pnc_config_file:
-        config_data = json.load(pnc_config_file)
+    adam_type = config_data.get("adam_type", "")
+    active_ips, _, _ = get_active_joints()
+    expected_abs_num = len(active_ips)
 
-    # 提取 "adam_type" 的值
-    adam_type = config_data.get("adam_type", "")  # 默认空字符串
-
-    # 根据 adam_type 获取对应的 abs_num
-    expected_abs_num = adam_type_to_abs_num.get(adam_type)
-
-    if expected_abs_num is None:
-        print(f"错误: 未知的 adam_type '{adam_type}'")
-        print(f"支持的型号: {list(adam_type_to_abs_num.keys())}")
+    if expected_abs_num == 0:
+        print(f"错误: {adam_type} 下无活跃执行器（是否全部在 robot_profile 中禁用？）")
+        print("False")
         return
 
-    # 与读取的 abs_num 进行比较
-    if expected_abs_num != read_abs_num:
+    if read_abs_num != expected_abs_num:
         print(f"adam_type:\t{adam_type}")
-        print(f"expected_abs_num:\t{expected_abs_num}")
+        print(f"expected_abs_num (活跃关节数):\t{expected_abs_num}")
         print(f"read_abs_num:\t{read_abs_num}")
-        print("False - ABS数量不匹配")
+        print("False - ABS数量不匹配（keys 需为 joint_ip+10 或旧版 joint_ip）")
     else:
         print(f"adam_type:\t{adam_type}")
         print(f"ABS数量验证通过: {expected_abs_num}")

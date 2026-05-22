@@ -1,0 +1,23 @@
+{
+  "_comment": "复制为 plugins.json 按需启用；kind 由各阶段宿主支持列表决定",
+  "plugin_abi_expected": 1,
+  "search_paths": ["lib/plugins"],
+  "modules": [
+    {
+      "enabled": false,
+      "kind": "dummy_probe",
+      "library": "libadam_plugin_dummy.so"
+    },
+    {
+      "enabled": false,
+      "kind": "robot_backend",
+      "library": "libadam_plugin_robot_real.so",
+      "robot_type": "real"
+    },
+    {
+      "enabled": false,
+      "kind": "hand_backend",
+      "library": "libadam_plugin_hand_backend.so"
+    }
+  ]
+}
