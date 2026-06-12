@@ -45,18 +45,20 @@ abs_angle_dict: Dict[str, Any] = {}
 motor_rotor_angle_dict: Dict[str, Any] = {}
 
 ABS_RPC_PORT = 2561
+OLD_ABS_RPC_PORT = 2334
 PER_HOST_RPC_TIMEOUT_S = float(os.environ.get("READ_ABS_RPC_TIMEOUT", "0.65"))
-# 2561 上常见三类 RPC（与旧版 read_abs 一致；旧 ABS_IPS = 本脚本 ENCODER_IPS）：
-#   device.info；新固件 encoder.angle；旧固件 Encoder.Angle（勿与 2334 混用）。
+# ABS RPC:
+#   new ABS: encoder_ip:2561 encoder.angle
+#   old ABS: encoder_ip:2334 Encoder.Angle
 DEVICE_INFO_PAYLOAD = {"id": 0, "method": "device.info"}
 OLD_ENCODER_ANGLE_PAYLOAD: Dict[str, Any] = {
     "id": 1,
     "method": "Encoder.Angle",
     "params": "",
 }
-ENCODER_ANGLE_PAYLOADS: List[Dict[str, Any]] = [
-    {"id": 0, "method": "encoder.angle"},
-    OLD_ENCODER_ANGLE_PAYLOAD,
+ENCODER_ANGLE_REQUESTS: List[Tuple[int, Dict[str, Any]]] = [
+    (ABS_RPC_PORT, {"id": 0, "method": "encoder.angle"}),
+    (OLD_ABS_RPC_PORT, OLD_ENCODER_ANGLE_PAYLOAD),
 ]
 
 
@@ -175,12 +177,12 @@ def read_all_abs_angle_sequential():
         win_method: Optional[str] = None
         for host in hosts:
             for attempt in range(n_try):
-                for payload in ENCODER_ANGLE_PAYLOADS:
+                for port, payload in ENCODER_ANGLE_REQUESTS:
                     _dbg(
-                        f"2561 try host={host} attempt={attempt + 1}/{n_try} "
+                        f"ABS try host={host}:{port} attempt={attempt + 1}/{n_try} "
                         f"payload id={payload.get('id')} method={payload.get('method')!r}"
                     )
-                    jo = _udp_rpc_json(host, ABS_RPC_PORT, payload, tmo)
+                    jo = _udp_rpc_json(host, port, payload, tmo)
                     last_jo = jo if isinstance(jo, dict) else last_jo
                     if isinstance(jo, dict):
                         rad = _radian_from_encoder_angle_reply(jo)
@@ -209,21 +211,21 @@ def read_all_abs_angle_sequential():
                 entry["angle"] = angle_disp
             abs_angle_dict[motor_ip] = entry
             _dbg(
-                f"2561 ABS 成功 motor_ip={motor_ip} 2561@{host} method={win_method!r} entry={entry!r}"
+                f"ABS 成功 motor_ip={motor_ip} host={host} method={win_method!r} entry={entry!r}"
             )
             print(
-                f"[OK] ABS joint={motor_ip} 2561@{host} radian={rad} method={win_method!r}"
+                f"[OK] ABS joint={motor_ip} host={host} radian={rad} method={win_method!r}"
             )
         else:
             if isinstance(last_jo, dict) and last_jo.get("error") is not None:
                 print(
-                    f"[WARN] 2561 ABS motor={motor_ip} encoder={encoder_ip} error={last_jo.get('error')}"
+                    f"[WARN] ABS motor={motor_ip} encoder={encoder_ip} error={last_jo.get('error')}"
                 )
             else:
                 raw = str(last_jo) if last_jo is not None else "None"
                 print(
-                    f"[WARN] 2561 ABS（encoder.angle / Encoder.Angle）motor={motor_ip} encoder={encoder_ip} "
-                    f"无有效 radian（将尝试用 2334 motor 填 radian）: {raw[:160]}"
+                    f"[WARN] ABS motor={motor_ip} encoder={encoder_ip} "
+                    f"无有效 radian（默认不会用 motor_rotor_abs_pos 回填）: {raw[:160]}"
                 )
                 _dbg(f"2561 ABS 最终失败 motor_ip={motor_ip} last_jo={raw[:300]!r}")
 
@@ -308,12 +310,20 @@ def merge_dicts(dict1, dict2):
 
 def fill_missing_radian_from_motor(all_angle: Dict[str, Any]) -> None:
     """
-    左臂等关节 2561 无 encoder.angle 时，2334 仍有 motor_rotor_abs_pos。
-    用其填 radian 使 abs.json 与 check_abs 完整；双编绝对值标定精度依赖 2561 的机型可设
-    READ_ABS_NO_RADIAN_FALLBACK=1 关闭此行为。
+    历史上这里会在 ABS radian 缺失时用 motor_rotor_abs_pos 回填 radian。
+    这会把双编码器伪造成同一路读数，默认禁用；仅显式设置
+    READ_ABS_ALLOW_RADIAN_FALLBACK=1 时才保留旧行为。
     """
-    if os.environ.get("READ_ABS_NO_RADIAN_FALLBACK", "0") == "1":
-        _dbg("fill_missing_radian_from_motor: 已设 READ_ABS_NO_RADIAN_FALLBACK=1，跳过")
+    if os.environ.get("READ_ABS_ALLOW_RADIAN_FALLBACK", "0") != "1":
+        _dbg("fill_missing_radian_from_motor: 默认禁用 motor->radian 回填")
+        for motor_ip in MOTOR_IPS:
+            k = joint_ip_to_abs_file_key(motor_ip)
+            ent = all_angle.get(k)
+            if isinstance(ent, dict) and ent.get("radian") is None and ent.get("motor_rotor_abs_pos") is not None:
+                print(
+                    f"[WARN] {k}（motor 行 {motor_ip}）缺少 ABS radian，未用 motor_rotor_abs_pos 回填；"
+                    "请检查 ABS 读取链路"
+                )
         return
     for motor_ip in MOTOR_IPS:
         k = joint_ip_to_abs_file_key(motor_ip)
